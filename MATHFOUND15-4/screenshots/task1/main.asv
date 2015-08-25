@@ -1,0 +1,16 @@
+
+close all; clear; clc;
+pt = dlmread('..\..\Data\Balzer\10.txt',' ');
+n = size(pt,1);
+val = 1/n;
+imageMatrix = zeros(400);
+
+for i=1:n
+    s_pt = floor(400*pt(i,:));
+    if s_pt(1) > 0 && s_pt(2) > 0
+        imageMatrix(s_pt(1), ) = val;
+    end
+end
+ft_img = fftshift(fft2(imageMatrix));
+ periodogramMatrix = abs(ft_img);
+ imshow(periodogramMatrix * 200);
